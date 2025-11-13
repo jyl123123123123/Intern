@@ -6,6 +6,17 @@ from .scraper import DoubanTopScraper
 from .repository import SqlAlchemyMovieRepository
 from .pipeline import IngestionPipeline
 
+from sqlalchemy import create_engine
+from .db import engine, Base
+
+#建数据库
+engine_root = create_engine("mysql+pymysql://root:123456@localhost:3306/")
+engine_root.execute("CREATE DATABASE IF NOT EXISTS test CHARACTER SET utf8mb4;")
+
+#建表
+Base.metadata.create_all(engine)
+
+
 def top250_pages_first_100():
     base = "https://movie.douban.com/top250?start={}&filter="
     return [base.format(i) for i in (0, 25, 50, 75)]
