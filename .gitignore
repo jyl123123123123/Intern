@@ -7,3 +7,7 @@ venv/
 .env/
 
 .vscode/
+
+ML/mnist_train.csv
+ML/mnist_test.csv
+ML/*.csv
